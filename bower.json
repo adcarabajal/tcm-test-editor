@@ -1,0 +1,25 @@
+{
+  "name": "tcprototype",
+  "description": "j",
+  "version": "0.0.0",
+  "dependencies": {
+    "bootstrap": "~3.1.1",
+    "angular": "~1.2.16",
+    "lodash": "~2.4.1",
+    "angular-bootstrap": "~0.11.0",
+    "angular-ui-tree": "2.1.5",
+    "angular-highlightjs": "~0.3.2",
+    "angular-marked": "~0.0.12",
+    "angular-ui-codemirror": "0.1.6",
+    "codemirror": "~3.15.0",
+    "highlight-js": "~7.0.1",
+    "jquery": "~2.1.1",
+    "marked": "~0.3.1",
+    "js-yaml": "~3.2.7"
+  }
+}
+
+
+
+
+

@@ -1,0 +1,40 @@
+.btn-group.pull-right
+    label.btn.btn-primary.btn-xs(ng-model="radioModel" btn-radio="'Basic'") Basic
+    label.btn.btn-primary.btn-xs(ng-model="radioModel" btn-radio="'Advanced'") Advanced
+
+.editor-container
+    .advanced-view(ng-show="radioModel=='Advanced'")
+        #code
+        .flow
+            img(src="images/generalflow.png", style="width: 100%;height: 200px;")
+    .basic-view(ng-show="radioModel=='Basic'")
+        script(type="text/ng-template", id="steps_renderer.html")
+            div(ui-tree-handle, ng-if="!isObject(step)")
+                a.btn.cm-test-properties.btn-xs(data-nodrag, ng-click="toggle(this)")
+                  &nbsp;{{step}}
+                a.pull-right.btn.btn-danger.btn-xs(data-nodrag, ng-click="remove(this)")
+                  span.glyphicon.glyphicon-remove
+                a.pull-right.btn.btn-primary.btn-xs(data-nodrag, ng-click="newSubItem(this)", style="margin-right: 8px;")
+                  span.glyphicon.glyphicon-plus
+
+            ol(ui-tree-nodes="options", ng-model="step", ng-class="{hidden: collapsed}", ng-if="isObject(step)")
+                li(ng-repeat="(key, props) in step", ui-tree-node, ng-include="'test_renderer.html'")
+
+        script(type="text/ng-template", id="test_renderer.html")
+            div(ui-tree-handle)
+              a.btn.btn-xs.cm-test(data-nodrag, ng-click="toggle(this)")
+                span.glyphicon(ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}")
+                &nbsp;{{key}}
+                {{props.description}}
+              a.pull-right.btn.btn-danger.btn-xs(data-nodrag, ng-click="remove(this)")
+                span.glyphicon.glyphicon-remove
+              a.pull-right.btn.btn-primary.btn-xs(data-nodrag, ng-click="newSubItem(this)", style="margin-right: 8px;")
+                span.glyphicon.glyphicon-plus
+
+            ol(ui-tree-nodes="options", ng-model="props", ng-class="{hidden: collapsed}")
+                li(ui-tree-node,ng-repeat="step in props.steps", ng-include="'steps_renderer.html'" )
+
+
+        div(ui-tree="options", style="padding-top: 21px;")
+            ol(ui-tree-nodes, ng-model="list")
+                li(ng-repeat="(key, props) in list", ui-tree-node, ng-include="'test_renderer.html'")

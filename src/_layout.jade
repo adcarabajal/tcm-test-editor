@@ -1,0 +1,58 @@
+doctype
+html
+  head
+    title Prototype
+    link(rel="stylesheet", href="styles/main.css")
+    link(rel="stylesheet", href="scripts/vendor/styles/codemirror.css")
+    link(rel="stylesheet", href="scripts/vendor/styles/solarized.css")
+    link(rel="stylesheet", href="scripts/vendor/styles/show-hint.css")
+    link(rel="stylesheet", href="scripts/libs/angular-ui-tree/dist/angular-ui-tree.min.css")
+    //link(rel="stylesheet", href="scripts/libs/font-awesome/css/font-awesome.css")
+
+  body(ng-app="testCasesEditor")
+
+    block content
+
+    block scripts
+      script(src="scripts/livereload-support.js")
+      script(src="scripts/libs/angular/angular.js")
+      script(src="scripts/libs/js-yaml/dist/js-yaml.min.js")
+
+      script(src="scripts/libs/angular-bootstrap/ui-bootstrap-tpls.js")
+      script(src="scripts/libs/angular-ui-tree/dist/angular-ui-tree.js")
+      script(src="scripts/libs/marked/lib/marked.js")
+      script(src="scripts/libs/highlightjs/highlight.pack.js")
+      script(src="scripts/libs/codemirror/lib/codemirror.js")
+      script(src="scripts/libs/codemirror/mode/javascript/javascript.js")
+      script(src="scripts/libs/codemirror/mode/xml/xml.js")
+      script(src="scripts/libs/codemirror/mode/yaml/yaml.js")
+      script(src="scripts/libs/codemirror/addon/dialog/dialog.js")
+      script(src="scripts/libs/codemirror/addon/search/search.js")
+      script(src="scripts/libs/codemirror/addon/search/searchcursor.js")
+      script(src="scripts/libs/codemirror/addon/lint/lint.js")
+      script(src="scripts/libs/angular-ui-codemirror/ui-codemirror.js")
+      script(src="scripts/libs/angular-marked/angular-marked.js")
+      script(src="scripts/libs/angular-highlightjs/angular-highlightjs.js")
+      //<script src="bower_components/slug/slug.js"></script>
+
+      script(src="scripts/vendor/scripts/codemirror.js")
+      script(src="scripts/vendor/scripts/foldcode.js")
+      script(src="scripts/vendor/scripts/foldgutter.js")
+      script(src="scripts/vendor/scripts/gfm.js")
+      script(src="scripts/vendor/scripts/javascript.js")
+      script(src="scripts/vendor/scripts/markdown.js")
+      script(src="scripts/vendor/scripts/overlay.js")
+      script(src="scripts/vendor/scripts/show-hint.js")
+      script(src="scripts/vendor/scripts/xml.js")
+
+      script(src="scripts/app.js")
+      script(src="scripts/services/utils.js")
+
+      script(src="scripts/services/lightweight-dom.js")
+      script(src="scripts/services/lightweight-parse.js")
+      script(src="scripts/services/code-mirror.js")
+      script(src="scripts/services/taml-highlight.js")
+      script(src="scripts/services/taml-highlight-config.js")
+
+      script(src="scripts/controllers/tc-editor-main.js")
+      script(src="scripts/directives/tc-editor.js")

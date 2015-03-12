@@ -1,0 +1,129 @@
+@import '../../bower_components/bootstrap/less/bootstrap';
+@import 'debug-grid';
+
+body {
+  background-color: #ecf0f1;
+  color: #2c3e50;
+}
+
+.container {
+  // fixed size for demo purposes, actually Bootstrap
+  // does it in a responsive way
+  width: 960px;
+  padding: 0 10px;
+}
+
+.page-header {
+  border-color: lighten(#2c3e50, 50%);
+}
+
+.flex-row {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+
+.flex-auto {
+  -webkit-flex: auto;
+  flex: auto;
+}
+
+.flex-none {
+  -webkit-flex: none;
+  flex: none;
+}
+
+.flex-justify-center {
+  justify-content: center;
+}
+
+.two-columns {
+  .flex-row;
+
+  .column:nth-child(1) {
+    .flex-auto;
+    width: 50%;
+    margin-right: 10px;
+  }
+
+  .column:nth-child(2) {
+    .flex-auto;
+    width: 50%;
+    margin-left: 10px;
+  }
+}
+
+.active {
+  background-color: blue;
+  color: white;
+}
+
+.flyout-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: transparent;
+  z-index: 1000;
+}
+
+.cm-taml-tag { color: #859900; }
+.cm-comment { color: #586e75; font-style:italic; }
+.cm-test { color: #165DCB; }
+.cm-test-properties { color: #48918E; }
+.cm-test-properties-content { color: #A33FBE; }
+
+#code {
+  height: 60%;
+}
+
+.btn {
+  margin-right: 8px;
+}
+
+.angular-ui-tree-handle {
+  background: #f8faff;
+  border: 1px solid #dae2ea;
+  color: #7c9eb2;
+  padding: 10px 10px;
+}
+
+.angular-ui-tree-handle:hover {
+  color: #438eb9;
+  background: #f4f6f7;
+  border-color: #dce2e8;
+}
+
+.angular-ui-tree-placeholder {
+  background: #f0f9ff;
+  border: 2px dashed #bed2db;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+.group-title {
+  background-color: #687074 !important;
+  color: #FFF !important;
+}
+
+.editor-container {
+  border-bottom-style: solid;
+  border-left-style: solid;
+  height: 500px;
+  border-right-style: solid;
+}
+
+.flow  {
+  border-top-style: dashed;
+}
