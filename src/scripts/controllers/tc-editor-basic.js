@@ -2,14 +2,17 @@
   'use strict';
 
   angular.module('testCasesEditor')
-    .controller('tcEditorBasic', function ($scope, $rootScope, $timeout, $window, codeMirror) {
+    .controller('tcEditorBasic', function ($scope, safeApplyWrapper) {
 
       (function bootstrap() {
-
         $scope.selectedItem = {};
 
-        $scope.options = {
-        };
+        $scope.basic = {}
+
+        $scope.$on('event:advanced-editor-edited', safeApplyWrapper($scope, function bla(event, doc) {
+          $scope.basic = doc;
+          console.log(doc);
+        }));
 
         $scope.remove = function(scope) {
           console.log(scope);
@@ -36,6 +39,7 @@
         $scope.isObject = function(item){
            return typeof item === 'object';
         }
+
         $scope.availableColors = ['Red','Green','Blue','Yellow','Magenta','Maroon','Umbra','Turquoise'];
         $scope.disabled = undefined;
         $scope.multipleDemo = {};

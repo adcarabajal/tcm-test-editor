@@ -2,9 +2,9 @@
   'use strict';
 
   angular.module('testCasesEditor')
-    .controller('tcEditorMain', function ($scope, $rootScope, $timeout, $window, codeMirror) {
+    .controller('tcEditorMain', function ($scope, $rootScope) {
       (function bootstrap() {
-        $scope.list = {
+        $rootScope.list = {
           "Test-Hybrid": {
             "tags": ["sanity", "regression", "ui"],
             "steps": [
@@ -49,6 +49,7 @@
             "description": "una descripcion para el test mas complejo"
           }
         };
+
 
       })();
     });

@@ -12,11 +12,11 @@
         CodeMirror: CodeMirror
       };
 
-/*      service.removeTabs = function (line, indentUnit) {
+      service.removeTabs = function (line, indentUnit) {
         var spaceCount = getTabCount(getSpaceCount(line), indentUnit) * indentUnit;
         return spaceCount ? line.slice(spaceCount) : line;
       };
-*/
+
       service.tabKey = function (cm) {
         var cursor     = cm.getCursor();
         var line       = cm.getLine(cursor.line);
@@ -97,20 +97,15 @@
           cm.execCommand('autocomplete');
         }
       };
-
+*/
       service.configureEditor = function(editor, extension) {
         var mode = MODES[extension] || MODES.raml;
 
         editor.setOption('mode', mode);
-        if (mode.name === 'raml') {
-          editor.setOption('extraKeys', ramlKeys);
-          editor.on('change', autocomplete);
-        } else {
-          editor.setOption('extraKeys', defaultKeys);
-          editor.off('change', autocomplete);
-        }
+        editor.setOption('extraKeys', defaultKeys);
+        editor.on('change', autocomplete);
       };
-*/
+
       service.enterKey = function (cm) {
         function getParent(lineNumber, spaceCount) {
           for (var i = lineNumber - 1; i >= 0; i--) {

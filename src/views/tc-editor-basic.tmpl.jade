@@ -28,6 +28,6 @@
             li(ui-tree-node,ng-repeat="step in props.steps", ng-include="'steps_renderer.html'" )
 
 
-    div(ui-tree="options", style="padding-top: 21px;")
-        ol(ui-tree-nodes, ng-model="list")
-            li(ng-repeat="(key, props) in list", ui-tree-node, ng-include="'test_renderer.html'")
+    div(ui-tree="options")
+        ol(ui-tree-nodes, ng-model="basic")
+            li(ng-repeat="(key, props) in basic", ui-tree-node, ng-include="'test_renderer.html'")
