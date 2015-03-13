@@ -3,3 +3,7 @@ node_modules/
 npm-debug.log
 bower_components
 .generated
+
+.idea/*
+.idea/**
+.idea/workspace.xml

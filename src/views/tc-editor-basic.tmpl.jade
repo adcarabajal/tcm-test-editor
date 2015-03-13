@@ -1,0 +1,33 @@
+.basic-view
+    script(type="text/ng-template", id="steps_renderer.html")
+        div(ui-tree-handle, ng-if="!isObject(step)")
+            a.btn.cm-test-properties.btn-xs(data-nodrag, ng-click="toggle(this)")
+              &nbsp;{{step}}
+            a.pull-right.btn.btn-danger.btn-xs(data-nodrag, ng-click="remove(this)")
+              span.glyphicon.glyphicon-remove
+            a.pull-right.btn.btn-primary.btn-xs(data-nodrag, ng-click="newSubItem(this)", style="margin-right: 8px;")
+              span.glyphicon.glyphicon-plus
+        ol(ui-tree-nodes="options", ng-model="step", ng-class="{hidden: collapsed}", ng-if="isObject(step)")
+            li(ng-repeat="(key, props) in step", ui-tree-node, ng-include="'test_renderer.html'")
+
+    script(type="text/ng-template", id="test_renderer.html")
+        div.bv-test(ui-tree-handle)
+          a.btn.btn-xs.cm-test(data-nodrag, ng-click="toggle(this)")
+            span.glyphicon(ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}")
+            &nbsp;{{key}}
+          a.pull-right.btn.btn-danger.btn-xs(data-nodrag, ng-click="remove(this)")
+            span.glyphicon.glyphicon-remove
+          a.pull-right.btn.btn-primary.btn-xs(data-nodrag, ng-click="newSubItem(this)", style="margin-right: 8px;")
+            span.glyphicon.glyphicon-plus
+        ol(ui-tree-nodes="options", ng-model="props", ng-class="{hidden: collapsed}")
+            .bv-test-description(ui-tree-handle) {{props.description}}
+                .bv-test-tags
+                    ui-select(multiple, ng-model="multipleDemo.colors", theme="select2", ng-disabled="disabled", style="width: 300px;")
+                        ui-select-match(placeholder="Select colors...") {{$item}}
+                        ui-select-choices(repeat="color in availableColors | filter:$select.search") {{color}}
+            li(ui-tree-node,ng-repeat="step in props.steps", ng-include="'steps_renderer.html'" )
+
+
+    div(ui-tree="options", style="padding-top: 21px;")
+        ol(ui-tree-nodes, ng-model="list")
+            li(ng-repeat="(key, props) in list", ui-tree-node, ng-include="'test_renderer.html'")

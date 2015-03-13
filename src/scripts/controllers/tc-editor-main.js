@@ -3,79 +3,53 @@
 
   angular.module('testCasesEditor')
     .controller('tcEditorMain', function ($scope, $rootScope, $timeout, $window, codeMirror) {
-      var editor;
-
-
       (function bootstrap() {
-        $scope.currentError    = undefined;
-        $scope.editor          = editor = codeMirror.initEditor();
-
-        $scope.radioModel = 'Advanced';
-
         $scope.list = {
-            "Test-Hybrid": {
-                "steps": [
-                    "sadasdsd",
-                    "dasdasdasd",
-                    {
-                        "Test 1.A ": {
-                            "steps": [
-                                "asdfasdfasdf"
-                            ],
-                            "description": "aslkjasdlfslkjfasdf"
-                        }
-                    },
-                    {
-                        "Test 1.B ": {
-                            "steps": [
-                                "asdfasdfasdf"
-                            ],
-                            "description": "aslkjasdlfslkjfasdf"
-                        }
-                    }
-                ],
-                "description": "Test Hybrid API"
-            },
-            "bla bla bla": {
-                "steps": [
-                    "asdadsa",
-                    "asfdafd"
-                ],
-                "description": "adfljkafldskj"
-            }
-        };
-
-        $scope.editor.setValue(jsyaml.dump($scope.list));
-
-        $scope.selectedItem = {};
-
-        $scope.options = {
-        };
-
-        $scope.remove = function(scope) {
-          scope.remove();
-        };
-
-        $scope.toggle = function(scope) {
-          scope.toggle();
-        };
-
-        $scope.newSubItem = function(scope) {
-          var nodeData = scope.$modelValue;
-          nodeData.items.push({
-              "dflkjasdlkjdas": {
+          "Test-Hybrid": {
+            "tags": ["sanity", "regression", "ui"],
+            "steps": [
+              "step 1",
+              "step 2",
+              {
+                "Test 1.A ": {
+                  "tags": ["regression", "ui"],
                   "steps": [
-                      "asdadsa",
-                      "asfdafd"
+                    "step 1"
                   ],
-                  "description": "adfljkafldskj"
+                  "description": "descripcion del test 1a"
+                }
+              },
+              {
+                "Test 1.B ": {
+                  "tags": ["regression", "ui"],
+                  "steps": [
+                    "step 1",
+                    "step 2"
+                  ],
+                  "description": "Descripcion para el test 1b"
+                }
               }
-          });
+            ],
+            "description": "Test Hybrid API test description andbla bla bla"
+          },
+          "Test cloudhub mas complejo": {
+            "tags": ["regression", "backend"],
+            "steps": [
+              "Step1",
+              "step 2"
+            ],
+            "description": "una descripcion para el test mas complejo"
+          },
+          "test environments": {
+            "tags": ["regression", "environments"],
+            "steps": [
+              "Step1",
+              "step 2"
+            ],
+            "description": "una descripcion para el test mas complejo"
+          }
         };
 
-        $scope.isObject = function(item){
-           return typeof item === 'object';
-        }
       })();
     });
 })();

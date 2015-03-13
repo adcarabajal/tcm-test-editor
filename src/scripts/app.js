@@ -7,6 +7,8 @@
         'ui.bootstrap.modal',
         'ui.bootstrap.tpls',
         'ui.tree',
+        'ui.select',
+        'bgDirectives',
 
         // project
         'codeMirror',

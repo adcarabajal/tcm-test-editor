@@ -74,7 +74,7 @@
         }
 
         /* pairs (associative arrays) -> key */
-        if (!state.pair && stream.match(/^\s*([a-z0-9\?\/\{\}\._\-])+(?=\s*:)/i)) {
+        if (!state.pair && stream.match(/^[\s\"]*([a-z0-9\?\/\{\}\._\-\s])+(?=[\s\"]*:)/i)) {
           var key = stream.string.replace(/^\s+|\s+$/g, '').split(':')[0];
           var sanitizedKey = key.slice(-1) === '?' ? key.slice(0, -1) : key;
           var level = getLineIndent(stream.string).tabCount;
@@ -87,20 +87,20 @@
           }
 
           /* methods */
-          if (level <= state.methodLevel || key.indexOf('Test') === 0) {
+          if (level <= state.methodLevel ){ //} || key.indexOf('Test') === 0) {
             state.methodLevel = 0;
             state.insideMethod = false;
           }
 
-          if (['description', 'steps'].indexOf(sanitizedKey) !== -1) {
+          if (['description', 'steps', 'tags'].indexOf(sanitizedKey) !== -1) {
             state.methodLevel = level;
             state.insideMethod = true;
             return 'test-properties';
           }
 
-          if (state.insideMethod) {
+          /*if (state.insideMethod) {
             return 'test-properties-content';
-          }
+          }*/
 
           var rootElements =
             highlightRootElement('traits', 'trait-title', 'trait-content', state, level, key) ||
@@ -112,8 +112,9 @@
             return rootElements;
           }
 
-          /* resources */
-          if (key.indexOf('Test') === 0) {
+          /* tests */
+
+          if (['description', 'steps'].indexOf(sanitizedKey) === -1 ) {
             return 'test';
           }
 

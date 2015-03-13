@@ -7,8 +7,10 @@ html
     link(rel="stylesheet", href="scripts/vendor/styles/solarized.css")
     link(rel="stylesheet", href="scripts/vendor/styles/show-hint.css")
     link(rel="stylesheet", href="scripts/libs/angular-ui-tree/dist/angular-ui-tree.min.css")
-    //link(rel="stylesheet", href="scripts/libs/font-awesome/css/font-awesome.css")
-
+    link(rel="stylesheet", href="scripts/libs/angular-ui-select/dist/select.css")
+    link(rel="stylesheet", href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css")
+    link(rel="stylesheet", href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css")
+    link(rel="stylesheet", href="scripts/libs/bg-splitter/css/style.css")
   body(ng-app="testCasesEditor")
 
     block content
@@ -16,8 +18,9 @@ html
     block scripts
       script(src="scripts/livereload-support.js")
       script(src="scripts/libs/angular/angular.js")
+      script(src="scripts/libs/angular-ui-select/dist/select.js")
       script(src="scripts/libs/js-yaml/dist/js-yaml.min.js")
-
+      script(src="scripts/libs/bg-splitter/js/splitter.js")
       script(src="scripts/libs/angular-bootstrap/ui-bootstrap-tpls.js")
       script(src="scripts/libs/angular-ui-tree/dist/angular-ui-tree.js")
       script(src="scripts/libs/marked/lib/marked.js")
@@ -55,4 +58,8 @@ html
       script(src="scripts/services/taml-highlight-config.js")
 
       script(src="scripts/controllers/tc-editor-main.js")
+      script(src="scripts/controllers/tc-editor-basic.js")
+      script(src="scripts/controllers/tc-editor-advanced.js")
       script(src="scripts/directives/tc-editor.js")
+      script(src="scripts/directives/tc-editor-basic.js")
+      script(src="scripts/directives/tc-editor-advanced.js")
