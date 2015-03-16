@@ -22,12 +22,12 @@
         ol(ui-tree-nodes="options", ng-model="props", ng-class="{hidden: collapsed}")
             .bv-test-description(ui-tree-handle) {{props.description}}
                 .bv-test-tags
-                    ui-select(multiple, ng-model="multipleDemo.colors", theme="select2", ng-disabled="disabled", style="width: 300px;")
-                        ui-select-match(placeholder="Select colors...") {{$item}}
-                        ui-select-choices(repeat="color in availableColors | filter:$select.search") {{color}}
+                    ui-select(multiple, ng-model="props.tags", theme="select2", ng-disabled="disabled", style="width: 300px;")
+                        ui-select-match(placeholder="add tags...") {{$item}}
+                        ui-select-choices(repeat="tag in availableTags | filter:$select.search") {{tag}}
             li(ui-tree-node,ng-repeat="step in props.steps", ng-include="'steps_renderer.html'" )
 
 
     div(ui-tree="options")
-        ol(ui-tree-nodes, ng-model="basic")
-            li(ng-repeat="(key, props) in basic", ui-tree-node, ng-include="'test_renderer.html'")
+        ol(ui-tree-nodes, ng-model="basicList")
+            li(ng-repeat="(key, props) in basicList", ui-tree-node, ng-include="'test_renderer.html'")

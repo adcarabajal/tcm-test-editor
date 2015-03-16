@@ -25,7 +25,7 @@
 
           try {
             var doc = jsyaml.safeLoad(editor.getValue());
-            $rootScope.$broadcast('event:advanced-editor-edited', doc);
+            $scope.$emit('event:advanced-editor-parsed', doc);
 
           } catch (e) {
             console.log(e);

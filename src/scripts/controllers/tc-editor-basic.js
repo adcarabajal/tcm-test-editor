@@ -7,11 +7,10 @@
       (function bootstrap() {
         $scope.selectedItem = {};
 
-        $scope.basic = {}
+        $scope.basicList = $scope.list;
 
         $scope.$on('event:advanced-editor-edited', safeApplyWrapper($scope, function bla(event, doc) {
-          $scope.basic = doc;
-          console.log(doc);
+          $scope.basicList = doc;
         }));
 
         $scope.remove = function(scope) {
