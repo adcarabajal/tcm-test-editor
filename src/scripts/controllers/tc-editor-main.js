@@ -50,12 +50,19 @@
           }
         };
 
+				$scope.$broadcast('event:main-editor-list-updated', $scope.list);
+
         $scope.availableTags = tags($scope.list );
 
         $scope.$on('event:advanced-editor-parsed', safeApplyWrapper($scope, function wrapAdvancedEdition(event, doc) {
           $scope.availableTags = tags(doc);
           $scope.$broadcast('event:advanced-editor-edited', doc);
         }));
+
+				$scope.$on('event:basic-editor-parsed', safeApplyWrapper($scope, function wrapAdvancedEdition(event, doc) {
+					$scope.list = doc;
+					$scope.$broadcast('event:basic-editor-edited', doc);
+				}));
 
         function tags(obj) {
           var values = _(obj).values();

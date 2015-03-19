@@ -6,7 +6,7 @@
         'ui.bootstrap',
         'ui.bootstrap.modal',
         'ui.bootstrap.tpls',
-        'ui.tree',
+        //'ui.tree',
         'ui.select',
         'bgDirectives',
 
