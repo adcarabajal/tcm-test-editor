@@ -70,10 +70,26 @@
           if (values.isEmpty()){
             return [];
           }
+					var tagsArr = [];
+					var stepsArr = [];
+					try{
+						tagsArr = (!values.pluck("tags"))?[]:values.pluck("tags");
+
+					}catch(e){
+						//console.log(values);
+						//return [];
+					}
+
+					try{
+						stepsArr = (!values.pluck("steps"))?[]:values.pluck("steps");
+					}catch(e){
+
+					}
+
 
           return _.union(
-            values.pluck("tags").flatten().value(),
-            values.pluck("steps").flatten().map(tags).flatten().value()
+						tagsArr.flatten().value(),
+            stepsArr.flatten().map(tags).flatten().value()
           );
         }
 

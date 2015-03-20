@@ -1,31 +1,38 @@
 .basic-view
   script(type="text/ng-template", id="steps_renderer.html")
-    .bv-step-edit(ng-if="!isObject(step)")
-      a.btn.cm-test-properties.btn-xs(ng-click="toggle(this)")
-        &nbsp;{{step}}
-      a.pull-right.btn.btn-danger.btn-xs(ng-click="remove(this)")
-        span.glyphicon.glyphicon-remove
-      a.pull-right.btn.btn-primary.btn-xs(ng-click="newSubItem(this)", style="margin-right: 8px;")
-        span.glyphicon.glyphicon-plus
+    .bv-step-edit.cm-text(ng-if="!isObject(step)")
+      span(ng-show="!this.editing")
+        a.btn.cm-text(ng-click="toggle(this)")
+          &nbsp;{{step}}
+        a.pull-right.btn.btn-danger.btn-xs(ng-click="remove(this)")
+          span.glyphicon.glyphicon-remove
+        a.pull-right.btn.btn-primary.btn-xs(ng-click="newSubItem(this)", style="margin-right: 8px;")
+          span.glyphicon.glyphicon-plus
+        a.pull-right.btn.btn-primary.btn-xs(data-nodrag, ng-click="editStep(this)", style="margin-right: 8px;")
+          i.glyphicon.glyphicon-pencil
+      span(ng-show="this.editing")
+        input.form-control(style="width: 70%;display: inline;", type="text", placeholder="Step Name", ng-model="step", ng-show="this.editing")
+        button.btn.btn-default.btn-xs.pull-right(type="submit", ng-click="saveTest(this)") Save
+        button.btn.btn-default.btn-xs.pull-right(type="submit", ng-click="saveTest(this)") Cancel
 
-    ol(ng-class="{hidden: collapsed}", ng-if="isObject(step)")
+    ol.bv-tree-root(ng-if="isObject(step)")
         li(ng-repeat="(tst, props) in step", ng-include="'test_renderer.html'")
 
   script(type="text/ng-template", id="test_renderer.html")
-    .bv-box()
+    .bv-box
       .bv-test(ng-show="!this.editing")
         a.btn.btn-xs.cm-test(ng-click="toggle(this)")
           span.glyphicon(ng-class="{'glyphicon-chevron-right': this.collapsed, 'glyphicon-chevron-down': !this.collapsed}")
           &nbsp;{{props.testName}}
         a.pull-right.btn.btn-danger.btn-xs(data-nodrag, ng-click="remove(this)")
           i.glyphicon.glyphicon-remove
-        a.pull-right.btn.btn-primary.btn-xs(data-nodrag, ng-click="editTest(this, tstName)", style="margin-right: 8px;")
+        a.pull-right.btn.btn-primary.btn-xs(data-nodrag, ng-click="editTest(this)", style="margin-right: 8px;")
           i.glyphicon.glyphicon-pencil
 
         .bv-test-props.cm-test-properties(ng-show="!this.editing", ng-class="{hidden: collapsed}")
           .bv-test-description
             span.bv-test-description-label Description:
-            span {{props.values.description}}
+            span.cm-text {{props.values.description}}
           .bv-test-tags
             span.bv-test-tags-label Tags:
               ui-select.bv-test-tags-select(multiple, ng-model="props.values.tags", theme="select2")
@@ -47,9 +54,10 @@
               button.btn.btn-default.btn-xs(type="submit", ng-click="saveTest(this)") Save
               button.btn.btn-default.btn-xs(type="submit", ng-click="cancelEditingTest(this)") Cancel
 
-
-      ol.bv-tree-steps(ng-class="{hidden: collapsed}")
-        li(ng-repeat="step in props.values.steps", ng-include="'steps_renderer.html'" )
+      .bv-test-steps(ng-class="{hidden: collapsed}")
+        .bv-test-steps-label.cm-test-properties Steps:
+        ol.bv-tree-steps(ng-class="{hidden: collapsed}")
+          li(ng-repeat="step in props.values.steps", ng-include="'steps_renderer.html'" )
 
 
   .bv-tree

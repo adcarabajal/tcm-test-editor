@@ -28,6 +28,8 @@
 							values: v
 						};
 
+						if(!r[k].values || !r[k].values.steps){return []}
+
 						r[k].values.steps = _.transform(r[k].values.steps, function(r2, v2, k2){
 							if(_.isObject(v2)){
 								r2.push(transformDoc(v2));
@@ -69,9 +71,13 @@
           }
         };
 
-        $scope.editTest = function(scope, key) {
+        $scope.editTest = function(scope) {
 					scope.editing = true;
         };
+
+				$scope.editStep = function(scope) {
+					scope.editing = true;
+				}
 
         $scope.cancelEditingTest = function(scope, key) {
           scope.editing = false;

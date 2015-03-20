@@ -23,10 +23,12 @@
 
 				function parseDoc(obj) {
 					return _.transform(obj, function(r, v, k){
+						if(!v.values) return;
+
 						r[v.testName] = {
-							tags: v.values.tags,
-							steps: v.values.steps,
-							description: v.values.description,
+							tags: (!v.values.tags)?[]: v.values.tags,
+							steps: (!v.values.steps)?[]: v.values.steps,
+							description: (!v.values.description)?"": v.values.description
 						}
 
 
