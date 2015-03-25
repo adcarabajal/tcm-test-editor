@@ -41,9 +41,56 @@
 					});
 				}
 
+        $scope.removeStep = function(scope, key, step) {          
+          $scope.basicList = deleteStep($scope.basicList, key, step);
+          $scope.$emit('event:basic-editor-parsed', $scope.basicList);
+        };
+
         $scope.remove = function(scope, key) {
           $scope.basicList = deleteTest($scope.basicList, key);
           $scope.$emit('event:basic-editor-parsed', $scope.basicList);
+        };
+
+        function deleteStep(obj, key, step) {
+
+          if(_.has(obj, key)){
+            obj[key].values.steps = _.remove(obj[key].values.steps, function(item){
+                if(!_.isObject(item)){
+                  return !(item === step);
+                }
+                return true;
+            });
+
+            return obj;
+          }
+
+          return _.transform(obj, function(ret, item, k){
+            if(item.values != null){
+              item.values = _.transform(item.values, function(r2, i2, k2){
+                if(k2==='steps'){
+
+                  i2 = _.transform(i2, function(r3, i3, k3){
+
+                    if(_.isObject(i3)){
+                      var newObj = deleteStep(i3, key, step);
+                      if(!_.isEmpty(newObj)){ r3.push(newObj);}
+
+                    }else{
+                      r3.push(i3);
+                    }
+
+                  });
+                }
+
+                r2[k2] = i2;
+
+              });
+            }
+
+            ret[k] = item;
+
+          });
+
         };
 
         function deleteTest(obj, key) {
@@ -73,7 +120,6 @@
 
               });
 
-              //console.log("sdad", item.values);
             }
 
             ret[k] = item;

@@ -4,7 +4,7 @@
       span(ng-show="!this.editingStep")
         a.btn.cm-text(ng-click="toggle(this)")
           &nbsp;{{step}}
-        a.pull-right.btn.btn-danger.btn-xs(ng-click="remove(this)")
+        a.pull-right.btn.btn-danger.btn-xs(ng-click="removeStep(this, props.testName, step)")
           span.glyphicon.glyphicon-remove
         a.pull-right.btn.btn-primary.btn-xs(ng-click="newSubItem(this)", style="margin-right: 8px;")
           span.glyphicon.glyphicon-plus
